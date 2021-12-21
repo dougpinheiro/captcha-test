@@ -27,7 +27,6 @@
 	});
 	function recaptcha(){
 		$.get("/captcha", (data) => {
-			console.log(data);
 			$("#captchaImg").attr("src", "data:image/png;base64, "+data);
 		});
 	}
