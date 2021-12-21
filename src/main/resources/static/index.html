@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Captcha Test</title>
+</head>
+<body>
+	<div>
+		<img id="captchaImg"
+			src=""
+			alt="captcha" />
+		<a href="#"><i id="reloadBtn" style="font-size: 36px;" class="material-icons md-24">refresh</i></a>
+		<form method="post" action="/recaptcha">
+			<input id="cIn" name="cIn" type="text"/>
+			<input type="submit" value="Send"></button>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		recaptcha();
+		$("#reloadBtn").click(() => {
+			recaptcha();
+		});
+	});
+	function recaptcha(){
+		$.get("/captcha", (data) => {
+			console.log(data);
+			$("#captchaImg").attr("src", "data:image/png;base64, "+data);
+		});
+	}
+</script>
+</html>
